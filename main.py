@@ -37,7 +37,7 @@ def linkedin_post(text_content: str):
     Publish a LinkedIn post with the given text content.
     """
     access_token = os.getenv("LINKEDIN_ACCESS_TOKEN")
-    user_id = os.getenv("LINKEDIN_AUTHOR_URN")
+    user_id = os.getenv("LINKEDIN_USER_ID")
     
     url = "https://api.linkedin.com/v2/ugcPosts"
     headers = {
@@ -72,13 +72,13 @@ def linkedin_post(text_content: str):
 
 # Agent 1: The Researcher
 researcher = Agent(
-    role="Senior Investment Researcher",
+    role="Senior Investment Analyst",
     goal="Uncover latest news and financial stats about {topic}",
     verbose=True,
     memory=True,
     backstory=(
-        "You are a veteran analyst. Your job is to dig deep into news and find facts that others miss. "
-        "You do not make things up. You are not a news anchor. You are a researcher."
+        "You are a veteran investment analyst. Your job is to dig deep into financial news and find market-moving facts that others miss. "
+        "You verify every piece of data. You are not a news aggregator; you are an analyst providing value."
     ),
     tools=[search_tool],
     llm=my_llm,
@@ -86,11 +86,11 @@ researcher = Agent(
 
 # Agent 2: The Writer
 writer = Agent(
-    role="Senior Tech Blog Writer",
-    goal="Write engaging and easy to understand tech articles about {topic}",
+    role="Social Media Strategist",
+    goal="Write engaging and viral-ready LinkedIn posts about {topic}",
     backstory=(
-        "You are a senior tech blog writer with 15 years of experience. "
-        "You take complex financial data and turn it into exciting stories."
+        "You are a social media powerhouse with a knack for turning dry financial data into viral content. "
+        "You know exactly what hashtags, formatting, and tone drive engagement on LinkedIn."
     ),
     allow_delegation=False,
     llm=my_llm,
@@ -99,11 +99,11 @@ writer = Agent(
 
 # Agent 3: The Publisher
 publisher = Agent(
-    role="LinkedIn Publisher",
-    goal="Publish a LinkedIn post with the given text content using the LinkedIn API",
+    role="API Manager",
+    goal="Publish the LinkedIn post exactly as written, ensuring technical compliance",
     backstory=(
-        "You are a LinkedIn publisher with 15 years of experience. "
-        "You take complex financial data and turn it into exciting stories."
+        "You are the final link in the chain. Your sole responsibility is to take the polished content "
+        "and successfully push it to the LinkedIn API via OAuth2. You handle the technical delivery."
     ),
     tools=[linkedin_post],
     allow_delegation=False,

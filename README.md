@@ -35,8 +35,8 @@ The system utilizes three specialized agents working in sequence:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/MarketPulse-AI.git
-cd MarketPulse-AI
+git clone https://github.com/kumardigamberjha/CrewAI-Financial-News-Automator.git 
+cd CrewAI-Financial-News-Automator
 ```
 
 ### 2. Create a virtual environment
